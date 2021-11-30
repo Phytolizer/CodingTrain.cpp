@@ -1,0 +1,10 @@
+macro(Declare_Challenge NAME)
+    add_executable(${NAME} ${ARGN})
+    target_link_libraries(${NAME} PRIVATE "SDL2-static" "SDL2_gfx" "glm" "helpers")
+    if(WIN32)
+        target_link_libraries(${NAME} PRIVATE "SDL2main")
+    endif(WIN32)
+    target_include_directories(${NAME} PRIVATE "${PROJECT_SOURCE_DIR}/inc")
+endmacro(Declare_Challenge)
+
+add_subdirectory("001_starfield")
