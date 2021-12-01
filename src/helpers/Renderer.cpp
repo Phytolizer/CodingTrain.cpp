@@ -18,7 +18,7 @@ void Renderer::translate(glm::vec2 translation)
     m_transform = glm::translate(m_transform, glm::vec3{translation, 0});
 }
 
-void Renderer::drawFilledCircle(glm::vec2 center, float radius, SDL_Color color)
+void Renderer::drawFilledCircle(glm::vec2 center, double radius, SDL_Color color)
 {
     glm::vec2 transformedCenter = m_transform * glm::vec4{center, 0, 1};
     filledCircleRGBA(m_renderer, static_cast<Sint16>(transformedCenter.x), static_cast<Sint16>(transformedCenter.y),

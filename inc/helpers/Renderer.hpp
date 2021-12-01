@@ -23,5 +23,5 @@ class Renderer
     void setDrawColor(SDL_Color color);
     void clear();
     void present();
-    void drawFilledCircle(glm::vec2 center, float radius, SDL_Color color);
+    void drawFilledCircle(glm::vec2 center, double radius, SDL_Color color);
 };
