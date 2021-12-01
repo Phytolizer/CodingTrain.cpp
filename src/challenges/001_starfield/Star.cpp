@@ -1,6 +1,7 @@
 #include "Star.hpp"
 #include <SDL2_gfxPrimitives.h>
 #include <SDL_render.h>
+#include <helpers/Renderer.hpp>
 #include <helpers/math.hpp>
 #include <helpers/random.hpp>
 
@@ -16,10 +17,10 @@ void Star::update()
     --m_z;
 }
 
-void Star::show(SDL_Renderer* renderer) const
+void Star::show(Renderer* renderer) const
 {
     double sx = Math::map(m_x / m_z, 0, 1, 0, static_cast<double>(m_windowWidth));
     double sy = Math::map(m_y / m_z, 0, 1, 0, static_cast<double>(m_windowWidth));
 
-    filledCircleRGBA(renderer, static_cast<Sint16>(sx), static_cast<Sint16>(sy), 4, 255, 255, 255, 255);
+    renderer->drawFilledCircle({sx, sy}, 4, {255, 255, 255, 255});
 }

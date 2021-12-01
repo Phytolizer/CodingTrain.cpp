@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SDL_render.h>
+#include <helpers/Renderer.hpp>
 
 class Star
 {
@@ -14,5 +15,5 @@ class Star
     Star(size_t windowWidth, size_t windowHeight);
 
     void update();
-    void show(SDL_Renderer* renderer) const;
+    void show(Renderer* renderer) const;
 };

@@ -12,7 +12,7 @@ int main(int /*argc*/, char** /*argv*/)
     SDL_Init(SDL_INIT_VIDEO);
     SDL_Window* window = SDL_CreateWindow("Starfield", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH,
                                           WINDOW_HEIGHT, SDL_WINDOW_ALLOW_HIGHDPI);
-    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    Renderer renderer{window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC};
 
     std::vector<Star> stars;
     stars.reserve(500);
@@ -37,19 +37,20 @@ int main(int /*argc*/, char** /*argv*/)
             }
         }
 
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-        SDL_RenderClear(renderer);
+        renderer.loadIdentity();
+        renderer.setDrawColor({0, 0, 0, 255});
+        renderer.clear();
 
+        renderer.translate({WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2});
         for (auto& star : stars)
         {
             star.update();
-            star.show(renderer);
+            star.show(&renderer);
         }
 
-        SDL_RenderPresent(renderer);
+        renderer.present();
     }
 
-    SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
     return 0;
